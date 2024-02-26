@@ -1,0 +1,17 @@
+version: '3.4'
+services: 
+  vault:
+    image: hashicorp/vault
+    networks:
+      - vaultbridge
+    ports:
+      - 8200:8200
+    environment:
+      VAULT_ROOT_TOKEN_ID: ${VAULT_ROOT_TOKEN_ID}
+      VAULT_LISTEN_ADDRESS: ${VAULT_LISTEN_ADDRESS}
+    cap_add:
+      - IPC_LOCK
+
+networks:
+  vaultbridge:
+    driver: "bridge"
